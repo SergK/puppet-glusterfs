@@ -7,12 +7,12 @@ Puppet::Type.type(:glusterfs_vol).provide(:glusterfs) do
   def create
     opts = ['volume', 'create', resource[:name]]
     if resource[:stripe] then
-      opts << "stripe" 
+      opts << "stripe"
       opts << resource[:stripe]
     end
-    
+
     if resource[:replica] then
-      opts << "replica" 
+      opts << "replica"
       opts << resource[:replica]
     end
 
@@ -65,18 +65,18 @@ Puppet::Type.type(:glusterfs_vol).provide(:glusterfs) do
     self.debug "Checking for missing bricks"
     opts = []
     if resource[:stripe] then
-      opts << "stripe" 
+      opts << "stripe"
       opts << resource[:stripe]
     end
-    
+
     if resource[:replica] then
-      opts << "replica" 
+      opts << "replica"
       opts << resource[:replica]
     end
 
     missing_brick = []
     resource[:brick].map do |brick|
-      if not volinfo =~ /Brick\d+:\s#{Regexp.escape(brick)}/ 
+      if not volinfo =~ /Brick\d+:\s#{Regexp.escape(brick)}/
         self.debug "#{brick} is missing from the volume"
         missing_brick << brick
       end
