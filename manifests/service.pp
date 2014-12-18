@@ -18,7 +18,6 @@ class glusterfs::service {
     ensure    => running,
     enable    => true,
     hasstatus => true,
-    require   => Package['glusterfs-server']
   }
 
 }
